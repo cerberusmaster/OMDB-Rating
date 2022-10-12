@@ -1,21 +1,21 @@
-import AllProduct from './components/AllProduct.vue';
-import CreateProduct from './components/CreateProduct.vue';
-import EditProduct from './components/EditProduct.vue';
+import Home from './pages/Home';
+import Guessing from './pages/Guessing';
+import Results from './pages/Results';
  
 export const routes = [
     {
         name: 'home',
         path: '/',
-        component: AllProduct
+        component: Home
     },
     {
         name: 'create',
-        path: '/create',
-        component: CreateProduct
+        path: '/guessing',
+        component: Guessing
     },
     {
-        name: 'edit',
-        path: '/edit/:id',
-        component: EditProduct
+        name: 'results',
+        path: '/results',
+        component: Results
     }
 ];

@@ -31,12 +31,12 @@
                 // this.axios
                 //     .post('http://localhost:8000/api/products', this.product)
                 //     .then(response => (
-                //         this.$router.push({ name: 'home' })
-                //     ))
-                //     .catch(err => console.log(err))
-                //     .finally(() => this.loading = false)
-            }
-        },
+                    //         this.$router.push({ name: 'home' })
+                    //     ))
+                    //     .catch(err => console.log(err))
+                    //     .finally(() => this.loading = false)
+                }
+            },
         mounted() {
             console.log('Component mounted.');
         }

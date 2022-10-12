@@ -31,26 +31,26 @@
 <script>
     export default {
         data() {
-            return {
-                products: []
-            }
+            // return {
+            //     products: []
+            // }
         },
         created() {
-            this.axios
-                .get('http://localhost:8000/api/products/')
-                .then(response => {
-                    this.products = response.data;
-                });
+            // this.axios
+            //     .get('http://localhost:8000/api/products/')
+            //     .then(response => {
+            //         this.products = response.data;
+            //     });
         },
         methods: {
-            deleteProduct(id) { 
-                this.axios
-                    .delete(`http://localhost:8000/api/products/${id}`)
-                    .then(response => {
-                        let i = this.products.map(data => data.id).indexOf(id);
-                        this.products.splice(i, 1)
-                    });
-            }
+            // deleteProduct(id) { 
+            //     this.axios
+            //         .delete(`http://localhost:8000/api/products/${id}`)
+            //         .then(response => {
+            //             let i = this.products.map(data => data.id).indexOf(id);
+            //             this.products.splice(i, 1)
+            //         });
+            // }
         }
     }
 </script>
