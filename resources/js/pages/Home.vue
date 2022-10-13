@@ -1,67 +1,38 @@
 <template>
-    <header-component></header-component>
-    <div class="container mt-3">
-        <form class="row g-3 needs-validation" novalidate>
-          <div class="col-md-4 col-md-offset-4">
-            <label for="validationCustom01" class="form-label">Movie search term</label>
-            <input type="text" class="form-control" id="validationCustom01" value="Mark" placeholder="terminator" required>
-          </div>
-          <div class="col-md-4">
-            <label for="validationCustom02" class="form-label">User name</label>
-            <input type="text" class="form-control" id="validationCustom02" value="Otto" placeholder="" required>
-          </div>
-          <div class="col-md-4">
-            <label for="validationCustomUsername" class="form-label">Username</label>
-            <div class="input-group">
-              <span class="input-group-text" id="inputGroupPrepend">@</span>
-              <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-              <div class="invalid-feedback">
-                Please choose a username.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label for="validationCustom03" class="form-label">City</label>
-            <input type="text" class="form-control" id="validationCustom03" required>
-            <div class="invalid-feedback">
-              Please provide a valid city.
-            </div>
-          </div>
-          <div class="col-md-3">
-            <label for="validationCustom04" class="form-label">State</label>
-            <select class="form-select" id="validationCustom04" required>
-              <option selected disabled value="">Choose...</option>
-              <option>...</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid state.
-            </div>
-          </div>
-          <div class="col-md-3">
-            <label for="validationCustom05" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="validationCustom05" required>
-            <div class="invalid-feedback">
-              Please provide a valid zip.
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-              <label class="form-check-label" for="invalidCheck">
-                Agree to terms and conditions
-              </label>
-              <div class="invalid-feedback">
-                You must agree before submitting.
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
-          </div>
-        </form>
-    </div>
+  <div class="container mt-3">
+    <form class="row g-3 needs-validation col-md-6 m-auto" novalidate>
+      <div class="col-md-12">
+        <label for="validationCustom01" class="form-label">Movie search term</label>
+        <input type="text" class="form-control" v-model="terminator" placeholder="terminator" required>
+      </div>
+      <div class="col-md-12">
+        <label for="validationCustom02" class="form-label">User name</label>
+        <input type="text" class="form-control" v-model="username" placeholder="user name.." required>
+      </div>
+      <div class="col-12 mt-5 m-auto">
+        <button class="btn btn-primary w-100" type="button" @click="onSubmit">Submit form</button>
+      </div>
+    </form>
+  </div>
 </template>
  
 <script>
-    export default { }
+  export default {
+    name: 'Home',
+    data() {
+      return {
+        terminator: '',
+        username: '',
+      }
+    },
+    methods: {
+      onSubmit() {
+        this.$router.push({ name: 'guessing', query: {terminator: this.terminator, username: this.username}, params: {test: 'test'} });
+      }
+    },
+    async created() {
+      const response = await fetch("https://www.omdbapi.com/?apikey=f8c59d5f&t=blade");
+      console.log(await response.json());
+    }
+  }
 </script>

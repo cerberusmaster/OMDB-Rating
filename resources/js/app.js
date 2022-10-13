@@ -10,11 +10,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import './bootstrap';
 
-import App from './layouts/App'
+import App from './App.vue';
 import Home from './pages/Home';
 import Guessing from './pages/Guessing';
 import Results from './pages/Results';
-import Header from './layouts/Header';
 
 // import Home from './components/Home'
 // import About from './components/About'
@@ -37,7 +36,7 @@ const router = createRouter({
     routes,
 });
 
-const app = createApp(Home);
+const app = createApp(App);
 
 /** Declare Vue Component Pages */
 app.component("HomePage", Home);
@@ -45,7 +44,6 @@ app.component("ResultsPage", Results);
 app.component("GuessingPage", Guessing);
 
 /** Declare Vue Component Pages */
-app.component("header-component", Header);
 
 app.use(router).mount('#app');
 

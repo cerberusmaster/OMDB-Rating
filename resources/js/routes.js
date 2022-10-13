@@ -1,7 +1,7 @@
 import Home from './pages/Home';
 import Guessing from './pages/Guessing';
 import Results from './pages/Results';
- 
+
 export const routes = [
     {
         name: 'home',
@@ -9,7 +9,7 @@ export const routes = [
         component: Home
     },
     {
-        name: 'create',
+        name: 'guessing',
         path: '/guessing',
         component: Guessing
     },

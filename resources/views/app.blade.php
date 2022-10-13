@@ -6,10 +6,10 @@
         <meta name="csrf-token" value="{{ csrf_token() }}" />
         <title>Vue JS CRUD Operations in Laravel</title>
         <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body> 
         <div id="app"></div>
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
-        <h1>Laravel Blade Container</h1>
     </body>
 </html>
