@@ -7,7 +7,9 @@
 import { createApp, h, Vue} from 'vue';
 import { routes } from './routes';
 import { createRouter, createWebHistory } from 'vue-router';
-
+import { createStore } from 'vuex';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import './bootstrap';
 
 import App from './App.vue';
@@ -15,21 +17,17 @@ import Home from './pages/Home';
 import Guessing from './pages/Guessing';
 import Results from './pages/Results';
 
-// import Home from './components/Home'
-// import About from './components/About'
-
-// const routes = [
-//     {
-//       path: "/",
-//       name: "Home",
-//       component: Home,
-//     },
-//     {
-//       path: "/about",
-//       name: "About",
-//       component: About,
-//     },
-// ];
+const store = createStore({
+    store() {
+        return {
+            username: '',
+            terminator: '',
+            score: 0
+        }
+    },
+    mutations: {
+    }
+})
 
 const router = createRouter({
     history: createWebHistory(),
@@ -44,8 +42,8 @@ app.component("ResultsPage", Results);
 app.component("GuessingPage", Guessing);
 
 /** Declare Vue Component Pages */
-
-app.use(router).mount('#app');
+// app.use(VueAxios, axios);
+app.use(router).use(store).mount('#app');
 
 // app.component('example-component', ExampleComponent);
 

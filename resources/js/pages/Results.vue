@@ -16,163 +16,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>10/12/2022</td>
-                            <td>Blade</td>
-                            <td>4</td>
+                        <tr v-for="score in this.scoreList">
+                            <th scope="row">{{ score.id }}</th>
+                            <td>{{ score.username }}</td>
+                            <td>{{ score.created_at }}</td>
+                            <td>{{ score.term }}</td>
+                            <td>{{ score.score }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <a class="card-link">Card link</a>
-            <a class="card-link">Another link</a>
+            <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;<a class="card-link" @click="clearAll">Remove All</a>
         </div>
     </div>
 </template>
  
 <script>
-export default {}
+import axios from 'axios';
+
+export default {
+    name: 'Results',
+    data() {
+        return {
+            scoreList: [],
+        }
+    },
+    methods: {
+        async clearAll() {
+            await axios.get('/api/clear-scores')
+        }
+    },
+    async created() {
+        const all_score = await axios.get('/api/all-score')
+        this.scoreList = all_score.data
+    }
+}
 </script>
