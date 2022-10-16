@@ -2,8 +2,10 @@
     <div class="container mt-3">
         <!-- Guessing 5 step -->
         <form v-if="this.cur_index < this.guess_len" class="row g-3 needs-validation col-md-6 m-auto" novalidate>
-            <h6 for="validationCustom01" class="col-md-12 form-label m-auto text-center">Movie  {{ this.cur_index + 1 }} out {{ this.guess_len }}</h6>
-            <h6 for="validationCustom01" class="col-md-12 form-label mt-1 m-auto text-center">Terminator {{ this.cur_index + 1 }}</h6>
+            <h6 for="validationCustom01" class="col-md-12 form-label m-auto text-center">Movie {{ this.cur_index + 1 }}
+                out {{ this.guess_len }}</h6>
+            <h6 for="validationCustom01" class="col-md-12 form-label mt-1 m-auto text-center">Terminator {{
+            this.cur_index + 1 }}</h6>
             <!-- Image -->
             <div class="fit-content m-auto mt-1">
                 <div class="card">
@@ -45,10 +47,12 @@
             <h6 for="validationCustom01" class="col-md-12 form-label m-auto text-center">Result</h6>
             <div class="card" style="height: 15em;">
                 <div class="h-25 m-auto">
-                    <h6 for="validationCustom01" class="col-md-12 form-label m-auto mt-3">Success rate {{ this.succeed_count }} out of {{ this.guess_len }} guesses</h6>
+                    <h6 for="validationCustom01" class="col-md-12 form-label m-auto mt-3">Success rate {{
+                    this.succeed_count }} out of {{ this.guess_len }} guesses</h6>
                 </div>
                 <div class="h-75 m-auto">
-                    <h2 for="validationCustom01" class="col-md-12 form-label mt-5">{{ succeed_count * 100 / this.guess_len }}%</h2>
+                    <h2 for="validationCustom01" class="col-md-12 form-label mt-5">{{ succeed_count * 100 /
+                    this.guess_len }}%</h2>
                 </div>
             </div>
             <div class="col-6 mt-3 m-auto">
@@ -76,7 +80,7 @@ export default {
     methods: {
         onNext() {
             if (Math.abs(this.guess_rate - this.movie_data[this.cur_index].imdbRating) <= 1)
-                this.succeed_count ++;
+                this.succeed_count++;
             this.cur_index++;
         },
         async onSubmit() {
@@ -87,7 +91,7 @@ export default {
                 score: (this.succeed_count * 10 / this.guess_len)
             })
             // direct to result page
-            this.$router.push({name: "results"})
+            this.$router.push({ name: "results" })
 
             this.cur_index = 0;
             this.succeed_count = 0;
@@ -101,9 +105,6 @@ export default {
             const result = await response?.json();
             this.movie_data.push(result);
         });
-        
-        console.log(this.movie_titles, this.movie_data)
-        // console.log(this.$route.query, this.movie_data);
     },
     mounted() {
     }

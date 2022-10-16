@@ -23573,7 +23573,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref.apply(this, arguments);
       };
     }());
-    console.log(this.movie_titles, this.movie_data); // console.log(this.$route.query, this.movie_data);
   },
   mounted: function mounted() {}
 });
@@ -23608,6 +23607,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    validate: function validate() {
+      return this.username && this.terminator;
+    },
     onStart: function onStart() {
       var _this = this;
 
@@ -23616,21 +23618,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$store.state.username = _this.username;
-                _this.$store.state.terminator = _this.terminator;
+                if (_this.validate()) {
+                  _this.$store.state.username = _this.username;
+                  _this.$store.state.terminator = _this.terminator;
 
-                _this.$router.push({
-                  name: 'guessing',
-                  query: {
-                    terminator: _this.terminator,
-                    username: _this.username
-                  },
-                  params: {
-                    test: 'test'
-                  }
-                });
+                  _this.$router.push({
+                    name: 'guessing',
+                    query: {
+                      terminator: _this.terminator,
+                      username: _this.username
+                    },
+                    params: {
+                      test: 'test'
+                    }
+                  });
+                } else {
+                  alert("You need to fill input boxes");
+                }
 
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -23963,7 +23969,7 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "validationCustom01",
   "class": "form-label"
-}, "Movie search term", -1
+}, "Movie Search Term", -1
 /* HOISTED */
 );
 
@@ -23974,7 +23980,7 @@ var _hoisted_5 = {
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "validationCustom02",
   "class": "form-label"
-}, "User name", -1
+}, "User Name", -1
 /* HOISTED */
 );
 
@@ -23998,7 +24004,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.username = $event;
     }),
-    placeholder: "user name..",
+    placeholder: "user name",
     required: ""
   }, null, 512
   /* NEED_PATCH */
